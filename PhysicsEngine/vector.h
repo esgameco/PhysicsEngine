@@ -11,8 +11,6 @@ enum
 	z
 };
 
-namespace Math
-{
 template <typename T>
 struct Vector
 {
@@ -137,4 +135,3 @@ struct Vector
 
 	std::vector<T> contents;
 };
-}

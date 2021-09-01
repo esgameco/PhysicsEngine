@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "vector.h"
+#include "matrix.h"
 
 using std::cout;
 using std::endl;
-using Math::Vector;
+using std::vector;
 
 int main()
 {
@@ -13,12 +14,21 @@ int main()
 	Vector<double> offset(750, 500);
 	Vector<double> multiplier(5.0);
 	Vector<double> newPosition = (position + (direction * multiplier)) - offset;
+	Vector<double> weights(5, 5, 10);
+	Matrix<double> matrix = Matrix<double>(vector<vector<double>>{ 
+		{1, 2, 3},
+		{4, 5, 6}
+	});
+	Matrix<double> weightedMatrix = matrix * weights;
 
 	cout << "Position: " << position << endl;
 	cout << "Direction: " << direction << endl;
 	cout << "Multiplier: " << multiplier << endl << endl;
 
-	cout << "New Position: " << newPosition << endl;
+	cout << "New Position: " << newPosition << endl << endl;
+
+	cout << "Matrix: \n" << matrix << endl;
+	cout << "Weighted: \n" << weightedMatrix << endl;
 
 	return 0;
 }
