@@ -4,6 +4,9 @@
 #include <string>
 #include <stdexcept>
 
+#include "vector.fwd.h"
+#include "matrix.fwd.h"
+
 enum
 {
 	x,
@@ -104,6 +107,16 @@ struct Vector
 		else
 			throw std::invalid_argument("Arguments don't make sense");
 		return newVector;
+	}
+
+	Vector operator*(const Matrix<T>& other)
+	{
+		if (this->dimensions() != other.columns())
+			throw std::invalid_argument("Weights' dimensions must match Matrix's columns");
+
+		Matrix<T> newMatrix = other * this;
+
+		return newMatrix.getSolutionVector();
 	}
 
 	// TODO: Check whether namespace around friend is necessary

@@ -4,7 +4,8 @@
 #include <string>
 #include <stdexcept>
 
-#include "vector.h"
+#include "vector.fwd.h"
+#include "matrix.fwd.h"
 
 using std::vector;
 
@@ -12,20 +13,37 @@ template <typename T>
 struct Matrix
 {
 	// X rows, Y columns
+	Matrix() {}
 	Matrix(const int& x, const int& y) 
 	{
 		this->contents.resize(x, vector<T>(y, 0));
 	}
 	Matrix(const vector<vector<T>>& mat)
 	{
-		for (int i = 0; i < mat.size(); i++)
+		for (unsigned int i = 0; i < mat.size(); i++)
 		{
 			this->contents.push_back(vector<T>());
-			for (int j = 0; j < mat[i].size(); j++)
+			for (unsigned int j = 0; j < mat[i].size(); j++)
 			{
 				this->contents[i].push_back(mat[i][j]);
 			}
 		}
+	}
+
+	Vector<T> getSolutionVector()
+	{
+		Vector<T> v;
+
+		for (int i = 0; i < this->rows(); i++)
+		{
+			v.push_back(0);
+			for (int j = 0; j < this->columns(); j++)
+			{
+				v[i] += this->get(i, j);
+			}
+		}
+
+		return v;
 	}
 
 	Matrix operator*(const Vector<T>& other)

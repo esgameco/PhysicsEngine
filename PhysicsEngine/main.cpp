@@ -20,6 +20,7 @@ int main()
 		{4, 5, 6}
 	});
 	Matrix<double> weightedMatrix = matrix * weights;
+	Vector<double> solutionVector = weights * matrix;
 
 	cout << "Position: " << position << endl;
 	cout << "Direction: " << direction << endl;
@@ -29,6 +30,7 @@ int main()
 
 	cout << "Matrix: \n" << matrix << endl;
 	cout << "Weighted: \n" << weightedMatrix << endl;
+	cout << "Solution: " << solutionVector << endl;
 
 	return 0;
 }
